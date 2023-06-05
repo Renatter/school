@@ -2,12 +2,14 @@
   <div class="container h-full pb-[55px]">
     <h1 class="text-[30px] text-[#4F4849] font-black pt-[50px]">Мұғалімдер</h1>
 
+    <!-- Заголовок "Мұғалімдер" -->
     <TeachersCard :teachers="teachers" />
+    <!-- Компонент TeachersCard с передачей массива учителей -->
   </div>
 </template>
 
 <script>
-import TeachersCard from "../components/TeachersCard.vue";
+import TeachersCard from "../components/TeachersCard.vue"; // Импорт компонента TeachersCard
 import {
   collection,
   getDocs,
@@ -16,22 +18,23 @@ import {
   onSnapshot,
   setDoc,
   doc,
-} from "firebase/firestore";
-import { db } from "../firebase/firebase";
+} from "firebase/firestore"; // Импорт функций для работы с Firestore из модуля Firebase
+import { db } from "../firebase/firebase"; // Подключение вашего модуля Firebase Firestore
+
 export default {
   components: {
     TeachersCard,
   },
   data() {
     return {
-      teachers: [], // Массив новостей
+      teachers: [], // Массив учителей
     };
   },
   async mounted() {
-    // Получение данных новостей из Firestore
+    // Получение данных учителей из Firestore
     const querySnapshot = await getDocs(collection(db, "teachers"));
 
-    // Заполнение массива новостей
+    // Заполнение массива учителей
     querySnapshot.forEach((doc) => {
       const teachersItem = {
         id: doc.id,

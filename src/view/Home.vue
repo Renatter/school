@@ -212,24 +212,32 @@
     <div class="container pt-[200px]">
       <div class="flex justify-between">
         <NumberCard name="ОҚУШЫЛАР" :number="480" />
+        <!-- Компонент NumberCard, отображающий информацию о количестве учащихся -->
         <NumberCard name="МҰГАЛІМДЕР" :number="9" />
+        <!-- Компонент NumberCard, отображающий информацию о количестве учителей -->
         <NumberCard name="ҮЗДІК ОҚУШЫЛАР" :number="45" />
+        <!-- Компонент NumberCard, отображающий информацию о количестве высокоуспешных учащихся -->
       </div>
     </div>
   </div>
   <News class="container py-[25px] h-[100vh]" />
+  <!-- Компонент News, отображающий новости -->
+
   <div class="bg-[#EFEDEB]">
     <Teacher class="container py-[25px] h-[100vh]" />
+    <!-- Компонент Teacher, отображающий информацию о преподавателях -->
   </div>
+
   <div class="bg-white">
     <Progress class="container py-[25px] h-[100vh]" />
+    <!-- Компонент Progress, отображающий прогресс -->
   </div>
 </template>
 
 <script>
-import News from "./News.vue";
-import Teacher from "./Teacher.vue";
-import Progress from "./Progress.vue";
+import News from "./News.vue"; // Импорт компонента News
+import Teacher from "./Teacher.vue"; // Импорт компонента Teacher
+import Progress from "./Progress.vue"; // Импорт компонента Progress
 import NumberCard from "../components/NumberCard.vue";
 export default {
   components: {
@@ -240,21 +248,21 @@ export default {
   },
   data() {
     return {
-      student: true,
-      teacher: false,
-      parents: false,
+      student: true, // Переменная для отображения информации об учащихся
+      teacher: false, // Переменная для отображения информации о преподавателях
+      parents: false, // Переменная для отображения информации о родителях
     };
   },
   methods: {
     showText(target) {
-      this.student = target === "student";
-      this.teacher = target === "teacher";
-      this.parents = target === "parents";
+      this.student = target === "student"; // Отображение информации об учащихся
+      this.teacher = target === "teacher"; // Отображение информации о преподавателях
+      this.parents = target === "parents"; // Отображение информации о родителях
     },
     hideText() {
-      this.student = false;
-      this.teacher = false;
-      this.parents = false;
+      this.student = false; // Скрытие информации об учащихся
+      this.teacher = false; // Скрытие информации о преподавателях
+      this.parents = false; // Скрытие информации о родителях
     },
   },
 };

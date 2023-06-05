@@ -1,9 +1,11 @@
 <template>
   <div class="pt-[10px] h-[100vh]">
+    <!-- Вкладки -->
     <ul
       class="pl-[405px] flex flex-wrap text-sm font-medium text-center text-gray-500 dark:text-gray-400 items-center"
     >
       <li class="mr-2">
+        <!-- Вкладка "Спорт" -->
         <a
           href="#"
           class="button-sport"
@@ -17,6 +19,7 @@
         >
       </li>
       <li class="mr-2">
+        <!-- Вкладка "Өнер" -->
         <a
           href="#"
           class="button-art"
@@ -29,6 +32,7 @@
         >
       </li>
       <li class="mr-2">
+        <!-- Вкладка "Информатика" -->
         <a
           href="#"
           class="button-it"
@@ -41,6 +45,7 @@
         >
       </li>
       <li class="mr-2">
+        <!-- Вкладка "Ғылым" -->
         <a
           href="#"
           class="button-science"
@@ -53,10 +58,16 @@
         >
       </li>
     </ul>
+
+    <!-- Компоненты для каждой вкладки -->
     <AddSport v-if="activeTab == 1" />
+    <!-- Компонент "AddSport" для вкладки "Спорт" -->
     <AddArt v-if="activeTab == 2" />
+    <!-- Компонент "AddArt" для вкладки "Өнер" -->
     <AddIt v-if="activeTab == 3" />
+    <!-- Компонент "AddIt" для вкладки "Информатика" -->
     <AddScience v-if="activeTab == 4" />
+    <!-- Компонент "AddScience" для вкладки "Ғылым" -->
   </div>
 </template>
 
@@ -74,12 +85,12 @@ export default {
   },
   data() {
     return {
-      activeTab: 1,
+      activeTab: 1, // Активная вкладка по умолчанию
     };
   },
   methods: {
     changeTab(tab) {
-      this.activeTab = tab;
+      this.activeTab = tab; // Изменение активной вкладки при клике
     },
   },
 };

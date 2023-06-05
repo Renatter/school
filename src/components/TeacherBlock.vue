@@ -7,16 +7,25 @@
           :src="teachers.image"
           alt=""
         />
+        <!-- Изображение учителя -->
         <div class="InfoTeacher ml-[35px]">
           <p class="pt-[25px] text-[45px] font-bold">{{ teachers.name }}</p>
+          <!-- Имя учителя -->
           <p class="pt-[15px]">{{ teachers.post }}</p>
+          <!-- Должность учителя -->
 
           <p class="text-[45px] font-bold">Білім деңгейі</p>
+          <!-- Заголовок уровня образования -->
           <p class="pt-[15px]">{{ teachers.educationLevel }}</p>
+          <!-- Уровень образования учителя -->
           <p class="pt-[25px] text-[45px] font-bold">Оқытылатын пәндер</p>
+          <!-- Заголовок преподаваемых предметов -->
           <p class="pt-[15px]">{{ teachers.subject }}</p>
+          <!-- Преподаваемые предметы учителя -->
           <p class="pt-[25px] text-[45px] font-bold">Кәсіби жетістіктер</p>
+          <!-- Заголовок профессиональных достижений -->
           <p class="pt-[15px]">{{ teachers.professionalAchievements }}</p>
+          <!-- Профессиональные достижения учителя -->
         </div>
       </div>
     </div>
@@ -37,8 +46,8 @@ import {
 export default {
   data() {
     return {
-      teachers: null,
-      seachName: this.$route.params.id,
+      teachers: null, // Информация об учителе
+      seachName: this.$route.params.id, // Получение имени учителя из параметров маршрута
     };
   },
   async created() {

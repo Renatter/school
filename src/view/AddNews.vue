@@ -1,6 +1,6 @@
 <template>
   <div class="pt-[55px] h-screen">
-    <!-- Форма для добавления новой новости -->
+    <!-- Кнопка для отображения формы добавления новости -->
     <a
       role="button"
       @click="showAdd = !showAdd"
@@ -8,6 +8,8 @@
       class="text-white bg-purple-600 px-3 py-1 rounded-md hover:bg-purple-700"
       >Жаңалықтар қосу</a
     >
+
+    <!-- Форма для добавления новости -->
     <form
       v-if="showAdd"
       @submit.prevent="addNews"
@@ -64,28 +66,30 @@
       </button>
     </form>
 
+    <!-- Отображение списка новостей -->
     <div v-if="showAdd == false" class="flex pt-[50px] flex-wrap">
       <div
         v-for="newsItem in news"
         :key="newsItem.id"
         class="w-60 cursor-pointer p-2 bg-[#EFEDEB] rounded-xl transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl ml-[25px] mt-[15px] border-[2px] border-[#A69781]"
       >
-        <!-- Image -->
+        <!-- Изображение новости -->
         <img
           class="h-40 object-cover rounded-xl"
           :src="newsItem.image"
           alt=""
         />
         <div class="p-2">
-          <!-- Heading -->
+          <!-- Заголовок новости -->
           <h2 class="font-bold text-lg mb-2">{{ newsItem.name }}</h2>
-          <!-- Description -->
+          <!-- Описание новости -->
           <p class="text-sm text-gray-600">
             {{ newsItem.text.substring(0, 20) + "..." }}
           </p>
         </div>
-        <!-- CTA -->
+        <!-- Действия с новостью -->
         <div class="">
+          <!-- Кнопка "Толығырақ" -->
           <router-link
             :to="{ path: '/NewsBlock/' + newsItem.name }"
             role="button"
@@ -93,6 +97,7 @@
             class="text-white bg-purple-600 px-3 py-1 rounded-md hover:bg-purple-700"
             >Толығырақ</router-link
           >
+          <!-- Кнопка "Жою" -->
           <a
             @click="deleteNews(newsItem.id)"
             role="button"
@@ -177,6 +182,7 @@ export default {
   },
 };
 </script>
+
 <style>
 .container {
   max-width: 1200px;

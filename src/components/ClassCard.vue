@@ -58,8 +58,8 @@ import {
 export default {
   data() {
     return {
-      classs: "",
-      classNumber: this.$route.params.id,
+      classs: "", // Переменная для хранения данных о классе
+      classNumber: this.$route.params.id, // Значение параметра id из маршрута
     };
   },
   async created() {
@@ -71,7 +71,7 @@ export default {
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       // doc.data() is never undefined for query doc snapshots
-      this.classs = doc.data();
+      this.classs = doc.data(); // Присваиваем данные класса переменной classs
     });
   },
 };

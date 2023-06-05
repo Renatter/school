@@ -1,4 +1,5 @@
 <template>
+  <!-- Шаблон компонента -->
   <div class="bg-white">
     <div class="container pt-[85px]">
       <h1 class="text-[45px] font-bold">Біздің сыныптар</h1>
@@ -73,6 +74,7 @@ export default {
   },
 };
 </script>
+
 
 <style lang="scss" scoped>
 h1 {

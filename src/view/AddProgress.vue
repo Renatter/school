@@ -1,5 +1,6 @@
 <template>
   <div class="h-[100vh] conitaner">
+    <!-- Жетістік қосу -->
     <a
       role="button"
       @click="showAdd = !showAdd"
@@ -7,11 +8,13 @@
       class="text-white bg-purple-600 px-3 py-1 rounded-md hover:bg-purple-700"
       >Жетістік қосу</a
     >
+    <!-- Форма добавления новости -->
     <form
       v-if="showAdd"
       @submit.prevent="addNews"
       class="flex flex-col items-center justify-center"
     >
+      <!-- Жетістік атауы -->
       <label class="mt-[15px]">
         Жетістік атауы
         <div>
@@ -23,6 +26,7 @@
           />
         </div>
       </label>
+      <!-- Сурет -->
       <label class="mt-[15px]">
         Сурет:
         <div>
@@ -34,7 +38,7 @@
           />
         </div>
       </label>
-
+      <!-- Күні -->
       <label class="mt-[15px]">
         Күні
         <div>
@@ -46,6 +50,7 @@
           />
         </div>
       </label>
+      <!-- Толық ақпарат -->
       <label class="mt-[15px]">
         Толық ақпарат
         <div>
@@ -56,6 +61,7 @@
           ></textarea>
         </div>
       </label>
+      <!-- Кнопка қосу -->
       <button
         type="submit"
         class="mt-[25px] focus:outline-none text-white bg-[#4ade80] hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
@@ -63,28 +69,30 @@
         қосу
       </button>
     </form>
+    <!-- Список новостей -->
     <div v-if="showAdd == false" class="flex pt-[50px] flex-wrap">
       <div
         v-for="newsItem in achievements"
         :key="newsItem.id"
         class="w-60 cursor-pointer p-2 bg-[#EFEDEB] rounded-xl transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl ml-[25px] mt-[15px] border-[2px] border-[#A69781]"
       >
-        <!-- Image -->
+        <!-- Изображение -->
         <img
           class="h-40 object-cover rounded-xl"
           :src="newsItem.image"
           alt=""
         />
         <div class="p-2">
-          <!-- Heading -->
+          <!-- Заголовок -->
           <h2 class="font-bold text-lg mb-2">{{ newsItem.title }}</h2>
-          <!-- Description -->
+          <!-- Описание -->
           <p class="text-sm text-gray-600">
             {{ newsItem.fullInfo.substring(0, 20) + "..." }}
           </p>
         </div>
         <!-- CTA -->
         <div class="">
+          <!-- Кнопка удаления -->
           <a
             @click="deleteNews(newsItem.id)"
             role="button"
@@ -130,6 +138,7 @@ export default {
       try {
         const newsRef = collection(db, "achievements");
 
+        // Получение списка новостей из Firestore
         onSnapshot(newsRef, (snapshot) => {
           this.achievements = snapshot.docs.map((doc) => ({
             id: doc.id,

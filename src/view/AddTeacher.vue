@@ -1,5 +1,6 @@
 <template>
-  <div class="h-[100vh] conitaner">
+  <div class="h-[100vh] container">
+    <!-- Кнопка для отображения формы добавления нового учителя -->
     <a
       role="button"
       @click="showAdd = !showAdd"
@@ -7,11 +8,14 @@
       class="text-white bg-purple-600 px-3 py-1 rounded-md hover:bg-purple-700"
       >Мұғалім қосу</a
     >
+
+    <!-- Форма добавления нового учителя -->
     <form
       v-if="showAdd"
       @submit.prevent="addNews"
       class="flex flex-col items-center justify-center"
     >
+      <!-- Поле ввода имени учителя -->
       <label class="mt-[15px]">
         Мұғалім қосу
         <div>
@@ -23,6 +27,8 @@
           />
         </div>
       </label>
+
+      <!-- Поле ввода ссылки на изображение -->
       <label class="mt-[15px]">
         Сурет:
         <div>
@@ -34,6 +40,8 @@
           />
         </div>
       </label>
+
+      <!-- Поле ввода уровня образования -->
       <label class="mt-[15px]">
         Білім деңгейі:
         <div>
@@ -45,6 +53,8 @@
           />
         </div>
       </label>
+
+      <!-- Поле ввода предмета преподавания -->
       <label class="mt-[15px]">
         Оқытылатын пән:
         <div>
@@ -56,6 +66,8 @@
           />
         </div>
       </label>
+
+      <!-- Поле ввода профессиональных достижений -->
       <label class="mt-[15px]">
         Кәсіби жетістіктер
         <div>
@@ -66,6 +78,8 @@
           ></textarea>
         </div>
       </label>
+
+      <!-- Кнопка отправки формы -->
       <button
         type="submit"
         class="mt-[25px] focus:outline-none text-white bg-[#4ade80] hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
@@ -74,25 +88,28 @@
       </button>
     </form>
 
+    <!-- Отображение списка учителей -->
     <div v-if="showAdd == false" class="flex flex-wrap justify-between">
       <div
         v-for="newsItem in teachers"
         :key="newsItem.id"
         class="w-60 cursor-pointer p-2 bg-[#EFEDEB] rounded-xl transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl ml-[25px] mt-[15px] border-[2px] border-[#A69781]"
       >
-        <!-- Image -->
+        <!-- Изображение -->
         <img
           class="h-40 object-cover rounded-xl"
           :src="newsItem.image"
           alt=""
         />
+
         <div class="p-2">
-          <!-- Heading -->
+          <!-- Заголовок -->
           <h2 class="font-bold text-lg mb-2">{{ newsItem.name }}</h2>
-          <!-- Description -->
+          <!-- Описание -->
           <p class="text-sm text-gray-600">{{ newsItem.subject }}</p>
         </div>
-        <!-- CTA -->
+
+        <!-- Действия -->
         <div class="">
           <router-link
             :to="{ path: '/TeacherBlock/' + newsItem.name }"
@@ -128,26 +145,27 @@ import { db } from "../firebase/firebase";
 export default {
   data() {
     return {
-      showAdd: false,
-      teachers: [],
+      showAdd: false, // Флаг для отображения/скрытия формы добавления нового учителя
+      teachers: [], // Массив с информацией об учителях
       newTeacher: {
-        name: "",
-        subject: "",
-        image: "",
-        professionalAchievements: "",
-        achive: "",
+        name: "", // Имя учителя
+        subject: "", // Относится к какому предмету
+        image: "", // Ссылка на изображение учителя
+        professionalAchievements: "", // Профессиональные достижения учителя
+        achive: "", // (Поле лишнее и не используется)
       },
     };
   },
   async mounted() {
-    await this.fetchTeachers();
+    await this.fetchTeachers(); // Загрузка информации об учителях при инициализации компонента
   },
   methods: {
     async fetchTeachers() {
       try {
-        const newsRef = collection(db, "teachers");
+        const newsRef = collection(db, "teachers"); // Получение ссылки на коллекцию "teachers" из Firebase Firestore
 
         onSnapshot(newsRef, (snapshot) => {
+          // Подписка на изменения в коллекции "teachers"
           this.teachers = snapshot.docs.map((doc) => ({
             id: doc.id,
             ...doc.data(),

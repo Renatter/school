@@ -6,12 +6,15 @@
     >
       <!-- Image -->
       <img class="h-40 object-cover rounded-xl" :src="newsItem.image" alt="" />
+      <!-- Изображение новости -->
       <div class="p-2">
         <!-- Heading -->
         <h2 class="font-bold text-lg mb-2">{{ newsItem.name }}</h2>
+        <!-- Заголовок новости -->
         <!-- Description -->
         <p class="text-sm text-gray-600">
           {{ newsItem.text.substring(0, 20) + "..." }}
+          <!-- Описание новости (сокращенное до 20 символов) -->
         </p>
       </div>
       <!-- CTA -->
@@ -23,6 +26,7 @@
           class="text-white bg-purple-600 px-3 py-1 rounded-md hover:bg-purple-700"
           >Learn More</router-link
         >
+        <!-- Переход на страницу новости при клике на ссылку -->
       </div>
     </div>
   </div>
@@ -30,7 +34,7 @@
 
 <script>
 export default {
-  props: ["news"],
+  props: ["news"], // Входной параметр компонента - массив новостей
 };
 </script>
 

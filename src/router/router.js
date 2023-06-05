@@ -27,8 +27,8 @@ const router = createRouter({
             component: Reg,
         },
         {
-            path: '/Home',
-            name: 'Home',
+            path: '/',
+            name: '/',
             component: Home,
         },
         {

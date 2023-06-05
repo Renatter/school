@@ -93,37 +93,39 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase/firebase";
 import Table from "../components/Table.vue";
+
 export default {
   components: {
     Table,
   },
   data() {
     return {
-      schedule: [],
-      schedule2b: [],
-      schedule7a: [],
-      schedule11d: [],
-      showDropdown: false,
-      classS: 1,
+      schedule: [], // Переменная для хранения данных из коллекции "schedule"
+      schedule2b: [], // Переменная для хранения данных из коллекции "schedule2b"
+      schedule7a: [], // Переменная для хранения данных из коллекции "schedule7a"
+      schedule11d: [], // Переменная для хранения данных из коллекции "schedule11d"
+      showDropdown: false, // Флаг для отображения/скрытия выпадающего списка
+      classS: 1, // Выбранный класс
     };
   },
   methods: {
     toggleDropdown() {
-      this.showDropdown = !this.showDropdown;
+      this.showDropdown = !this.showDropdown; // Изменение состояния флага для отображения/скрытия выпадающего списка
     },
     selectMenuItem(item) {
-      this.showDropdown = false;
-      this.classS = item; // Закрываем выпадающий список при выборе пункта меню
+      this.showDropdown = false; // Закрываем выпадающий список при выборе пункта меню
+      this.classS = item; // Устанавливаем выбранный класс
     },
   },
   async mounted() {
+    // Функция, выполняющаяся после монтирования компонента на страницу
     const querySnapshot = await getDocs(collection(db, "schedule"));
     querySnapshot.forEach((doc) => {
       const scheduleItem = {
         id: doc.id,
         ...doc.data(),
       };
-      this.schedule.push(scheduleItem);
+      this.schedule.push(scheduleItem); // Добавляем данные из коллекции "schedule" в массив schedule
     });
 
     const querySnapshot1 = await getDocs(collection(db, "schedule2b"));
@@ -132,7 +134,7 @@ export default {
         id: doc.id,
         ...doc.data(),
       };
-      this.schedule2b.push(scheduleItem);
+      this.schedule2b.push(scheduleItem); // Добавляем данные из коллекции "schedule2b" в массив schedule2b
     });
 
     const querySnapshot2 = await getDocs(collection(db, "schedule7a"));
@@ -141,7 +143,7 @@ export default {
         id: doc.id,
         ...doc.data(),
       };
-      this.schedule7a.push(scheduleItem);
+      this.schedule7a.push(scheduleItem); // Добавляем данные из коллекции "schedule7a" в массив schedule7a
     });
 
     const querySnapshot3 = await getDocs(collection(db, "schedule11d"));
@@ -150,7 +152,7 @@ export default {
         id: doc.id,
         ...doc.data(),
       };
-      this.schedule11d.push(scheduleItem);
+      this.schedule11d.push(scheduleItem); // Добавляем данные из коллекции "schedule11d" в массив schedule11d
     });
   },
 };

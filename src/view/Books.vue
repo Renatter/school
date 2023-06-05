@@ -44,16 +44,20 @@ export default {
   name: "NewsComponent",
   methods: {
     showBooks(index) {
+      // Метод, вызываемый при клике на ссылку категории книги.
+      // Устанавливает выбранную категорию книги в `selectedClass`.
       this.selectedClass = index;
     },
   },
   data() {
     return {
-      selectedClass: null,
-      books: [],
+      selectedClass: null, // Выбранная категория книги
+      books: [], // Массив книг
     };
   },
   async mounted() {
+    // Асинхронная функция, вызывается после монтирования компонента на странице.
+    // Загружает данные книг из базы данных Firebase и сохраняет их в `books`.
     const querySnapshot = await getDocs(collection(db, "books"));
 
     querySnapshot.forEach((doc) => {

@@ -8,9 +8,13 @@
         src="https://mihschool-1.gosuslugi.ru/netcat_files/8/168/grigor.jpg"
         alt="product designer"
       />
+      <!-- Изображение директора -->
       <h1 class="text-lg text-[#4F4849]">Аманов Ермахан</h1>
+      <!-- Имя директора -->
       <h3 class="text-sm text-[#FCB33D]">Директор</h3>
+      <!-- Должность директора -->
       <p class="text-[15px] text-purple-600 mt-4">Информатика</p>
+      <!-- Предмет директора -->
     </div>
   </div>
 
@@ -24,10 +28,15 @@
           :src="teacher.image"
           alt="product designer"
         />
+        <!-- Изображение учителя -->
         <h1 class="text-lg text-[#4F4849]">{{ teacher.name }}</h1>
+        <!-- Имя учителя -->
         <h3 class="text-sm text-[#FCB33D]">{{ teacher.post }}</h3>
+        <!-- Должность учителя -->
         <p class="text-[15px] text-purple-600 mt-4">{{ teacher.subject }}</p>
+        <!-- Предмет учителя -->
         <router-link :to="{ path: '/TeacherBlock/' + teacher.name }">
+          <!-- Переход на страницу учителя при клике на ссылку -->
           <button
             class="bg-[#FCB43F] px-8 py-2 mt-8 rounded-3xl text-gray-100 font-semibold uppercase tracking-wide"
           >

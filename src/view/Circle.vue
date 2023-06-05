@@ -1,6 +1,7 @@
 <template>
   <div class="bg-[#EFEDEB] h-[100vh]">
     <div class="container pt-[150px] flex flex-wrap gap-7 justify-evenly">
+      <!-- Компонент CircleSportCard -->
       <router-link to="/CircleSportCard">
         <div
           class="itemCARD border-[3px] w-[500px] h-[400px] border-[#F9B53D] rounded-[25px] p-[55px] flex items-center justify-between"
@@ -21,6 +22,8 @@
           />
         </div>
       </router-link>
+
+      <!-- Компонент CircleArtCard -->
       <router-link to="/CircleArtCard">
         <div
           class="itemCARD border-[3px] w-[500px] h-[400px] border-[#F88FA4] rounded-[25px] p-[55px] flex items-center justify-between"
@@ -41,6 +44,8 @@
           />
         </div>
       </router-link>
+
+      <!-- Компонент CircleItCard -->
       <router-link to="/CircleItCard">
         <div
           class="itemCARD border-[3px] w-[500px] h-[400px] border-[#72C2E9] rounded-[25px] p-[55px] flex items-center justify-between"
@@ -62,6 +67,7 @@
         </div>
       </router-link>
 
+      <!-- Компонент CircleScienceCard -->
       <router-link to="/CircleScienceCard">
         <div
           class="itemCARD border-[3px] w-[500px] h-[400px] border-[#9BE69D] rounded-[25px] p-[55px] flex items-center justify-between"
@@ -110,6 +116,7 @@ export default {
     };
   },
   methods: {
+    // Функция обработки события при наведении курсора на элемент
     onMouseEnter(index) {
       const gradientColors = [
         "#FFC371, #FF5F6D",
@@ -121,12 +128,13 @@ export default {
         index
       ] = `background-image: linear-gradient(to bottom right, ${gradientColors[index]});`;
     },
+    // Функция обработки события при уходе курсора с элемента
     onMouseLeave(index) {
       this.hoverStyle[index] = "";
     },
   },
   async mounted() {
-    // Получение данных новостей из Firestore
+    // Получение данных новостей из Firestore для категории "sport"
     const querySnapshot = await getDocs(collection(db, "sport"));
     // Заполнение массива новостей
     querySnapshot.forEach((doc) => {
@@ -137,6 +145,7 @@ export default {
       this.sports.push(sportItem);
     });
 
+    // Получение данных новостей из Firestore для категории "science"
     const querySnapshot2 = await getDocs(collection(db, "science"));
     // Заполнение массива новостей
     querySnapshot2.forEach((doc) => {
@@ -147,6 +156,7 @@ export default {
       this.science.push(sportItem);
     });
 
+    // Получение данных новостей из Firestore для категории "IT"
     const querySnapshot3 = await getDocs(collection(db, "IT"));
     // Заполнение массива новостей
     querySnapshot3.forEach((doc) => {
@@ -157,6 +167,7 @@ export default {
       this.it.push(sportItem);
     });
 
+    // Получение данных новостей из Firestore для категории "art"
     const querySnapshot4 = await getDocs(collection(db, "art"));
     // Заполнение массива новостей
     querySnapshot4.forEach((doc) => {
@@ -169,10 +180,12 @@ export default {
   },
 };
 </script>
+
 <style>
 h1 {
   font-family: "Merriweather", serif;
 }
+
 .itemCARD {
   cursor: pointer;
   transition: background-image 8s ease;
