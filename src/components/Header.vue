@@ -4,17 +4,15 @@
       <div
         class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
       >
-        <a href="https://flowbite.com/" class="flex items-center">
-          <img
-            src="https://flowbite.com/docs/images/logo.svg"
-            class="h-8 mr-3"
-            alt="Flowbite Logo"
-          />
-          <span
-            class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
-            >Flowbite</span
-          >
-        </a>
+        <router-link to="/">
+          <a class="flex items-center">
+            <img
+              src="https://cdn-icons-png.flaticon.com/128/1245/1245261.png"
+              class="h-8 mr-3"
+              alt="Flowbite Logo"
+            />
+          </a>
+        </router-link>
         <button
           data-collapse-toggle="navbar-default"
           type="button"
@@ -45,7 +43,7 @@
               <router-link
                 to="/"
                 class="font-bold block text-black py-2 pl-3 pr-4 bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-blue-500"
-                >Home</router-link
+                >Басты бет</router-link
               >
             </li>
             <li>
@@ -88,17 +86,24 @@
               >
             </li>
             <li>
-              <router-link
-                v-if="isAuthenticated"
-                to="/Admin"
-                class="font-bold block py-2 pl-3 pr-4 text-black rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:hover:text-blue-500 dark:hover:bg-gray-700 md:dark:hover:text-blue-500 md:dark:hover:bg-transparent"
-                >Admin
-              </router-link>
+              <div v-if="isAuthenticated" class="flex gap-[15px]">
+                <router-link
+                  to="/Admin"
+                  class="font-bold block py-2 pl-3 pr-4 text-black rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:hover:text-blue-500 dark:hover:bg-gray-700 md:dark:hover:text-blue-500 md:dark:hover:bg-transparent"
+                  >Админ
+                </router-link>
+                <button
+                  @click="logout"
+                  class="font-bold block py-2 pl-3 pr-4 text-red-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:hover:text-blue-500 dark:hover:bg-gray-700 md:dark:hover:text-blue-500 md:dark:hover:bg-transparent"
+                >
+                  Шығу
+                </button>
+              </div>
               <router-link
                 v-else
                 to="/Reg"
                 class="font-bold block py-2 pl-3 pr-4 text-black rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:hover:text-blue-500 dark:hover:bg-gray-700 md:dark:hover:text-blue-500 md:dark:hover:bg-transparent"
-                >Войти
+                >Кіру
               </router-link>
             </li>
           </ul>
@@ -122,6 +127,7 @@ export default {
     logout() {
       auth.signOut();
       this.$router.push("/");
+      this.isAuthenticated = false;
     },
   },
   async created() {
