@@ -69,14 +69,7 @@
                 >Үйірме</router-link
               >
             </li>
-            <li>
-              <router-link
-                to="/Classs"
-                href="#"
-                class="font-bold block py-2 pl-3 pr-4 text-black rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:hover:text-blue-500 dark:hover:bg-gray-700 md:dark:hover:text-blue-500 md:dark:hover:bg-transparent"
-                >Біздің сыныптар</router-link
-              >
-            </li>
+
             <li>
               <router-link
                 to="/Book"
@@ -88,6 +81,14 @@
             <li>
               <div v-if="isAuthenticated" class="flex gap-[15px]">
                 <router-link
+                  v-if="isparent === true"
+                  to="/Classs"
+                  href="#"
+                  class="font-bold block py-2 pl-3 pr-4 text-black rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:hover:text-blue-500 dark:hover:bg-gray-700 md:dark:hover:text-blue-500 md:dark:hover:bg-transparent"
+                  >Біздің сыныптар</router-link
+                >
+                <router-link
+                  v-if="isAdmin === true"
                   to="/Admin"
                   class="font-bold block py-2 pl-3 pr-4 text-black rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:hover:text-blue-500 dark:hover:bg-gray-700 md:dark:hover:text-blue-500 md:dark:hover:bg-transparent"
                   >Админ
@@ -121,6 +122,8 @@ export default {
     return {
       isAuthenticated: false,
       itemsLength: null,
+      isparent: null,
+      isAdmin: null,
     };
   },
   methods: {
@@ -145,6 +148,29 @@ export default {
           }
         });
       }
+      const likeRef = doc(db, "userProfile", user.uid);
+      const unsubscribeProfile = onSnapshot(likeRef, (docSnap) => {
+        if (docSnap.exists()) {
+          console.log("Document data:", docSnap.data());
+          const userData = docSnap.data();
+          console.log(userData);
+          this.isparent = userData.role === "parent";
+        } else {
+          console.log("No such document!");
+        }
+      });
+
+      const adminRef = doc(db, "userProfile", user.uid);
+      const admin = onSnapshot(adminRef, (docSnap) => {
+        if (docSnap.exists()) {
+          console.log("Document data:", docSnap.data());
+          const userData = docSnap.data();
+          console.log(userData);
+          this.isAdmin = userData.role === "admin";
+        } else {
+          console.log("No such document!");
+        }
+      });
     });
   },
 };

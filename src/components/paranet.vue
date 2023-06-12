@@ -54,13 +54,11 @@
               >Remember me</label
             >
           </div>
-          <router-link to="/paranet">
-            <a
-              href="#"
-              class="ml-auto text-sm text-blue-700 hover:underline dark:text-blue-500"
-              >Ата-ана?</a
-            >
-          </router-link>
+          <a
+            href="#"
+            class="ml-auto text-sm text-blue-700 hover:underline dark:text-blue-500"
+            >Lost Password?</a
+          >
         </div>
         <button
           type="submit"
@@ -91,6 +89,7 @@ export default {
     async register() {
       try {
         await signInWithEmailAndPassword(auth, this.email, this.pass);
+        this.currentUser = auth.currentUser;
       } catch (error) {
         console.log("Ошибка при регистрации пользователя:", error);
       }

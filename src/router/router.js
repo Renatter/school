@@ -18,6 +18,7 @@ import CircleArtCard from "../components/CircleArtCard.vue"
 import CircleItCard from "../components/CircleItCard.vue"
 import CircleScienceCard from "../components/CircleScienceCard.vue"
 import ClassCard from "../components/ClassCard.vue"
+import paranet from "../components/paranet.vue"
 const router = createRouter({
 
     history: createWebHistory(),
@@ -30,6 +31,11 @@ const router = createRouter({
             path: '/',
             name: '/',
             component: Home,
+        },
+        {
+            path: '/paranet',
+            name: '/paranet',
+            component: paranet,
         },
         {
             path: '/Admin',
